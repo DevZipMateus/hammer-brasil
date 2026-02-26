@@ -836,8 +836,10 @@ ul  { list-style: none; }
 
 .dep-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .dep-card {
@@ -1265,9 +1267,6 @@ ul  { list-style: none; }
   .mvv-grid { grid-template-columns: 1fr; gap: 16px; }
   .mvv-mascote { flex-direction: column; text-align: center; }
   .mvv-frase { text-align: center; }
-
-  /* Depoimentos — 2 colunas em tablet */
-  .dep-grid { grid-template-columns: repeat(2, 1fr); }
 
   /* Galeria — 2 colunas */
   .galeria-grid { grid-template-columns: 1fr 1fr; }
