@@ -143,6 +143,35 @@ window.addEventListener('scroll', updateActiveNav, { passive: true });
   nums.forEach(n => counterObs.observe(n));
 })();
 
+/* ── LIGHTBOX (galeria) ── */
+const lightbox        = document.getElementById('lightbox');
+const lightboxImg     = document.getElementById('lightboxImg');
+const lightboxClose   = document.getElementById('lightboxClose');
+const lightboxOverlay = document.getElementById('lightboxOverlay');
+
+function openLightbox(src, alt) {
+  lightboxImg.src = src;
+  lightboxImg.alt = alt;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelector('.galeria-grid').addEventListener('click', e => {
+  const item = e.target.closest('.gal-item');
+  if (!item) return;
+  const img = item.querySelector('img');
+  if (img) openLightbox(img.src, img.alt);
+});
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightboxOverlay.addEventListener('click', closeLightbox);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
 /* ── RIPPLE NOS BOTÕES ── */
 (function addRipple() {
   document.querySelectorAll('.btn-wpp, .btn-saiba, .btn-wpp-grande').forEach(btn => {

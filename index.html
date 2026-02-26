@@ -27,6 +27,7 @@
         <li><a href="#produtos" class="nav-link">Produtos</a></li>
         <li><a href="#mercado"  class="nav-link">Mercado</a></li>
         <li><a href="#mvv"      class="nav-link">Valores</a></li>
+        <li><a href="#galeria"  class="nav-link">Galeria</a></li>
         <li><a href="#contato"  class="nav-link">Contato</a></li>
       </ul>
       <a href="https://wa.me/5521966840516?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informações." target="_blank" class="btn-header-wpp">
@@ -49,6 +50,7 @@
       <li><a href="#produtos" class="nav-link">Produtos</a></li>
       <li><a href="#mercado"  class="nav-link">Mercado</a></li>
       <li><a href="#mvv"      class="nav-link">Valores</a></li>
+      <li><a href="#galeria"  class="nav-link">Galeria</a></li>
       <li><a href="#contato"  class="nav-link">Contato</a></li>
     </ul>
     <a href="https://wa.me/5521966840516" target="_blank" class="nav-wpp-btn">
@@ -122,7 +124,7 @@
     <div class="container">
       <div class="sobre-grid">
         <div class="sobre-img reveal">
-          <img src="img/sobre.jpg" alt="Equipe Hammer Brasil" loading="lazy" />
+          <img src="img/gal_showroom.jpg" alt="Loja Hammer Brasil" loading="lazy" />
           <div class="sobre-badge">
             <i class="fas fa-award"></i>
             <span>Excelência no<br/>atendimento</span>
@@ -337,6 +339,39 @@
     </div>
   </section>
 
+  <!-- ===== GALERIA ===== -->
+  <section class="section galeria-section" id="galeria">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Nossa Loja</span>
+        <h2 class="section-title">Conheça nosso <em>show room</em></h2>
+        <p class="section-desc">Venha nos visitar na Tijuca! Temos um showroom completo com as melhores marcas do mercado.</p>
+      </div>
+      <div class="galeria-grid">
+        <div class="gal-item gal-tall reveal">
+          <img src="img/gal_showroom.jpg" alt="Fachada Hammer Brasil" loading="lazy" />
+          <div class="gal-label">Fachada da Loja</div>
+        </div>
+        <div class="gal-item reveal">
+          <img src="img/gal_pisos.jpg" alt="Linha profissional para pisos" loading="lazy" />
+          <div class="gal-label">Linha para Pisos</div>
+        </div>
+        <div class="gal-item reveal">
+          <img src="img/gal_limpadores.jpg" alt="Limpadores e Inseticidas" loading="lazy" />
+          <div class="gal-label">Limpadores e Inseticidas</div>
+        </div>
+        <div class="gal-item reveal">
+          <img src="img/gal_vaselinas.jpg" alt="Vaselinas, Removedores e Saponáceos" loading="lazy" />
+          <div class="gal-label">Vaselinas e Removedores</div>
+        </div>
+        <div class="gal-item reveal">
+          <img src="img/gal_dispensers.jpg" alt="Linha de Dispensers" loading="lazy" />
+          <div class="gal-label">Linha de Dispensers</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== CONTATO ===== -->
   <section class="section contato-section" id="contato">
     <div class="contato-overlay"></div>
@@ -418,6 +453,13 @@
       </div>
     </div>
   </footer>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-overlay" id="lightboxOverlay"></div>
+    <button class="lightbox-close" id="lightboxClose" aria-label="Fechar"><i class="fas fa-times"></i></button>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
 
   <!-- ===== WPP FLUTUANTE ===== -->
   <a href="https://wa.me/5521966840516?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informações." target="_blank" class="wpp-float" aria-label="WhatsApp">
