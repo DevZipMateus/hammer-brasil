@@ -1393,11 +1393,11 @@ ul  { list-style: none; }
 }
 
 @media (max-width: 768px) {
-  .vitrine-embed iframe { height: 1100px !important; }
+  .vitrine-embed iframe { height: 600px !important; }
 }
 
 @media (max-width: 480px) {
-  .vitrine-embed iframe { height: 900px !important; }
+  .vitrine-embed iframe { height: 500px !important; }
 }
 
 /* ── MOBILE MÍNIMO (≤359px) ── */
