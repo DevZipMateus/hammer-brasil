@@ -79,6 +79,11 @@ const observer  = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
+      // propaga "visible" ao section-header pai para o underline animado
+      const header = entry.target.closest('.section-header');
+      if (header) header.classList.add('visible');
+      const sobreTexto = entry.target.closest('.sobre-texto');
+      if (sobreTexto) sobreTexto.classList.add('visible');
       observer.unobserve(entry.target);
     }
   });
@@ -171,6 +176,96 @@ document.querySelector('.galeria-grid').addEventListener('click', e => {
 lightboxClose.addEventListener('click', closeLightbox);
 lightboxOverlay.addEventListener('click', closeLightbox);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+/* ── TYPED TEXT NO HERO ── */
+(function typedText() {
+  const words   = ['condomínios', 'empresas', 'escolas', 'clínicas', 'igrejas', 'academias'];
+  const target  = document.querySelector('.hero-sub');
+  if (!target) return;
+
+  // insere o span dinamicamente no texto
+  target.innerHTML = target.innerHTML.replace(
+    'condomínios',
+    '<span class="typed-word">condomínios</span><span class="typed-cursor">|</span>'
+  );
+
+  const wordEl   = target.querySelector('.typed-word');
+  const cursorEl = target.querySelector('.typed-cursor');
+  if (!wordEl || !cursorEl) return;
+
+  let idx = 0, charIdx = 0, deleting = false;
+
+  function type() {
+    const word    = words[idx % words.length];
+    const display = deleting ? word.slice(0, charIdx--) : word.slice(0, charIdx++);
+    wordEl.textContent = display;
+
+    if (!deleting && charIdx > word.length) {
+      deleting = true;
+      setTimeout(type, 1600);
+    } else if (deleting && charIdx < 0) {
+      deleting = false;
+      idx++;
+      setTimeout(type, 300);
+    } else {
+      setTimeout(type, deleting ? 55 : 85);
+    }
+  }
+  setTimeout(type, 1200);
+})();
+
+/* ── PARALLAX DE MOUSE NO HERO ── */
+(function heroMouseParallax() {
+  const hero    = document.querySelector('.hero');
+  const mascote = document.querySelector('.hero-mascote img');
+  const overlay = document.querySelector('.hero-overlay');
+  if (!hero || !mascote) return;
+
+  hero.addEventListener('mousemove', e => {
+    const { left, top, width, height } = hero.getBoundingClientRect();
+    const cx = (e.clientX - left) / width  - 0.5;
+    const cy = (e.clientY - top)  / height - 0.5;
+    mascote.style.transform = `translateY(${cy * -18}px) translateX(${cx * 12}px)`;
+    if (overlay) overlay.style.transform = `translateX(${cx * 8}px) translateY(${cy * 8}px)`;
+  });
+
+  hero.addEventListener('mouseleave', () => {
+    mascote.style.transform = '';
+    if (overlay) overlay.style.transform = '';
+  });
+})();
+
+/* ── REVEAL ESCALONADO NOS GRIDS ── */
+(function staggerReveal() {
+  const grids = document.querySelectorAll(
+    '.produtos-grid, .mercado-grid, .mvv-grid, .numeros-grid, .galeria-grid, .dep-grid'
+  );
+  grids.forEach(grid => {
+    const children = grid.querySelectorAll('.reveal');
+    children.forEach((child, i) => {
+      child.style.transitionDelay = `${i * 80}ms`;
+    });
+  });
+})();
+
+/* ── TILT 3D NOS CARDS ── */
+(function cardTilt() {
+  const cards = document.querySelectorAll('.produto-card, .mercado-card, .dep-card, .mvv-card');
+  const MAX   = 10;
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const { left, top, width, height } = card.getBoundingClientRect();
+      const x = (e.clientX - left) / width  - 0.5;
+      const y = (e.clientY - top)  / height - 0.5;
+      card.style.transform = `perspective(600px) rotateY(${x * MAX}deg) rotateX(${-y * MAX}deg) scale(1.03)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+})();
 
 /* ── RIPPLE NOS BOTÕES ── */
 (function addRipple() {
